@@ -6,8 +6,10 @@ const app = express();
 app.use(express.json());
 const PORT = 8080;
 
-app.use('/api/carts', cartsRouter);
+app.use("/api/carts", cartsRouter);
 app.use("/api/products", productsRouter);
 
 // Inicio del servidor
-app.listen(PORT, () => console.log(`Servidor iniciado en: http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`Servidor iniciado en: http://localhost:${PORT}`)
+);

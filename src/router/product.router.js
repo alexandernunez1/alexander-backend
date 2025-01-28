@@ -1,5 +1,6 @@
 import express from "express";
 import ProductManager from "../ProductManager.js";
+import { v4 as uuidv4 } from 'uuid'; // Importa la función para generar UUID
 
 //instaciamos el router de express para manejar las rutas
 const productsRouter = express.Router();
@@ -39,7 +40,7 @@ productsRouter.get("/:pid", async (req, res) => {
 
 // ... lógica para agregar un nuevo producto ...
 productsRouter.post("/", async (req, res) => {
-  const newProduct = req.body;
+  const newProduct = { id: uuidv4(), ...req.body }; // Genera un UUID
   try {
     const createdProduct = await productManager.addProduct(newProduct); // Agrega el nuevo producto
     res.status(201).json(createdProduct); // Devuelve el producto creado con estado 201
@@ -49,6 +50,7 @@ productsRouter.post("/", async (req, res) => {
       .json({ error: "Error al agregar el producto", message: error.message });
   }
 });
+
 
 // ... lógica para actualizar un producto ...
 productsRouter.put("/:pid", async (req, res) => {
