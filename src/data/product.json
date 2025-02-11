@@ -1,35 +1,62 @@
 [
   {
     "id": 1,
-    "title": "Remera Nik",
-    "description": "Remera deportiva",
+    "titulo": "Luigi bosca",
+    "descripcion": "blend ",
     "code": "pgm232",
-    "price": 250,
+    "precio": 15000,
     "status": true,
     "stock": 10,
-    "category": "remeras",
+    "category": "vino",
     "thumbnail": ""
   },
   {
     "id": 2,
-    "title": "Remera adidas",
-    "description": "Remera runnirg",
+    "titulo": "Mauricio Lorca",
+    "descripcion": "Syrah",
     "code": "pgm232",
-    "price": 250,
+    "price": 10000,
     "status": true,
     "stock": 10,
-    "category": "remeras",
+    "categoria": "vino",
     "thumbnail": ""
   },
   {
     "id": 3,
-    "title": "Remera puma",
-    "description": "Remera clasica",
+    "titulo": "Enrique Foster Reserva",
+    "descripcion": "Malbec 2023 Singular",
     "code": "pgm232",
-    "price": 250,
+    "precio": 25000,
     "status": true,
     "stock": 10,
-    "category": "remeras",
+    "categoria": "vino",
     "thumbnail": ""
+  },
+  {
+    "titulo": "cafayate",
+    "descripcion": "malbec",
+    "codigo": "v752gh",
+    "precio": "7000",
+    "stock": "20",
+    "categoria": "vino",
+    "id": 4
+  },
+  {
+    "titulo": "hola",
+    "descripcion": "ola como estas",
+    "codigo": "1832",
+    "precio": "444",
+    "stock": "15",
+    "categoria": "remera",
+    "id": 5
+  },
+  {
+    "titulo": "cundo",
+    "descripcion": "cabernet",
+    "codigo": "1836",
+    "precio": "8000",
+    "stock": "10",
+    "categoria": "vino",
+    "id": 6
   }
 ]

@@ -5,7 +5,6 @@ import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import http from "http";
 import viewsRouter from "./src/router/views.router.js";
-import { Socket } from "dgram";
 import ProductManager from "./ProductManager.js";
 
 const app = express();
@@ -23,19 +22,29 @@ app.use("/api/carts", cartsRouter);
 app.use("/api/products", productsRouter);
 app.use("/", viewsRouter);
 
-const productManager = new ProductManager("./src/data/productos.js");
+const productManager = new ProductManager("./src/data/product.json");
 io.on("connection", (socket) => {
   console.log("Nuevo usuario conectado");
 
-  socket.on("newProduct", async (datosProducto) => {
+  socket.on("newProduct", async (productData) => {
     try {
-      const newProduct = await productManager.addProduct(datosProducto); // Corregido el nombre del método
+      const newProduct = await productManager.addProduct(productData);
       io.emit("productoAgregado", newProduct);
     } catch (error) {
-      console.error("Error al agregar un producto:", error.message); // Corregido para mostrar el mensaje del error específico
+      console.error("Error al agregar un producto:", error.message);
+    }
+  });
+
+  socket.on("deleteProduct", async (productId) => {
+    try {
+      const deletedProduct = await productManager.deleteProduct(productId);
+      io.emit("productoEliminado", deletedProduct.id); // Emitir solo el id del producto eliminado
+    } catch (error) {
+      console.error("Error al eliminar un producto:", error.message);
     }
   });
 });
+
 // Inicio del servidor
 server.listen(PORT, () =>
   console.log(`Servidor iniciado en: http://localhost:${PORT}`)

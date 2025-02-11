@@ -15,7 +15,18 @@ formNewProduct.addEventListener("submit", (event) => {
   socket.emit("newProduct", productData);
 });
 
-socket.on("productAdded", (newProduct) => {
+socket.on("productoAgregado", (newProduct) => {
   const listaProductos = document.getElementById("listaProductos");
-  listaProductos.innerHTML += `<li>${newProduct.title} - $${newProduct.price}</li>`;
+  listaProductos.innerHTML += `<li>${newProduct.titulo} - ${newProduct.precio} - ${newProduct.descripcion} - ${newProduct.categoria} <button onclick="eliminarProducto(${newProduct.id})">Eliminar</button></li>`;
+});
+function eliminarProducto(productId) {
+  socket.emit("deleteProduct", productId);
+}
+
+socket.on("productoEliminado", (productId) => {
+  const listaProductos = document.getElementById("listaProductos");
+  const productoEliminado = listaProductos.querySelector(`li[data-id='${productId}']`);
+  if (productoEliminado) {
+    listaProductos.removeChild(productoEliminado);
+  }
 });
