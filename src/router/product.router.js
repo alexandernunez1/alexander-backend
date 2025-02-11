@@ -1,6 +1,6 @@
 import express from "express";
-import ProductManager from "../ProductManager.js";
-import { v4 as uuidv4 } from 'uuid'; // Importa la función para generar UUID
+import ProductManager from "../../ProductManager.js";
+import { v4 as uuidv4 } from "uuid"; // Importa la función para generar UUID
 
 //instaciamos el router de express para manejar las rutas
 const productsRouter = express.Router();
@@ -50,7 +50,6 @@ productsRouter.post("/", async (req, res) => {
       .json({ error: "Error al agregar el producto", message: error.message });
   }
 });
-
 
 // ... lógica para actualizar un producto ...
 productsRouter.put("/:pid", async (req, res) => {

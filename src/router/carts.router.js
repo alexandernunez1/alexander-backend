@@ -12,7 +12,9 @@ cartRouter.post("/", async (req, res) => {
     const newCart = await cartManager.addCart(req.body); // Agregamos un nuevo carrito
     res.status(201).json(newCart); // Devuelve el carrito creado con estado 201
   } catch (error) {
-    res.status(500).json({ error: "Error al crear carrito", message: error.message });
+    res
+      .status(500)
+      .json({ error: "Error al crear carrito", message: error.message });
   }
 });
 
@@ -27,7 +29,12 @@ cartRouter.get("/:cid", async (req, res) => {
       res.status(404).json({ error: "Carrito no encontrado" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error al obtener carrito por ID", message: error.message });
+    res
+      .status(500)
+      .json({
+        error: "Error al obtener carrito por ID",
+        message: error.message,
+      });
   }
 });
 
@@ -42,7 +49,12 @@ cartRouter.post("/:cid/product/:pid", async (req, res) => {
       res.status(404).json({ error: "Carrito o producto no encontrado" });
     }
   } catch (error) {
-    res.status(500).json({ error: "Error al agregar producto al carrito", message: error.message });
+    res
+      .status(500)
+      .json({
+        error: "Error al agregar producto al carrito",
+        message: error.message,
+      });
   }
 });
 

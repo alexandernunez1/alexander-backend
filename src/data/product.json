@@ -9,5 +9,27 @@
     "stock": 10,
     "category": "remeras",
     "thumbnail": ""
+  },
+  {
+    "id": 2,
+    "title": "Remera adidas",
+    "description": "Remera runnirg",
+    "code": "pgm232",
+    "price": 250,
+    "status": true,
+    "stock": 10,
+    "category": "remeras",
+    "thumbnail": ""
+  },
+  {
+    "id": 3,
+    "title": "Remera puma",
+    "description": "Remera clasica",
+    "code": "pgm232",
+    "price": 250,
+    "status": true,
+    "stock": 10,
+    "category": "remeras",
+    "thumbnail": ""
   }
 ]
