@@ -17,7 +17,7 @@ formNewProduct.addEventListener("submit", (event) => {
 
 socket.on("productoAgregado", (newProduct) => {
   const listaProductos = document.getElementById("listaProductos");
-  listaProductos.innerHTML += `<li>${newProduct.titulo} - ${newProduct.precio} - ${newProduct.descripcion} - ${newProduct.categoria} <button onclick="eliminarProducto(${newProduct.id})">Eliminar</button></li>`;
+  listaProductos.innerHTML += `<li>${newProduct.titulo} - $${newProduct.precio} - ${newProduct.descripcion} - ${newProduct.categoria} <button onclick="eliminarProducto(${newProduct.id})">Eliminar</button></li>`;
 });
 function eliminarProducto(productId) {
   socket.emit("deleteProduct", productId);

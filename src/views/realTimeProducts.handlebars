@@ -1,6 +1,6 @@
-<div>
-  <h1>Productos en Tiempo Real</h1>
-  <h2>Agregar nuevo Producto</h2>
+<div class="cart-back">
+  <h1 class="produc">Productos en Tiempo Real</h1>
+  <h2 class="agregar">Agregar nuevo Producto</h2>
   <form id="formNewProduct">
     <input type="text" name="titulo" placeholder="Ingrese título" required />
     <input
@@ -25,8 +25,8 @@
     />
     <button type="submit">Enviar</button>
   </form>
-  <h2>Lista de Productos</h2>
-  <ul id="listaProductos">
+  <h2 class="lista-producto">Lista de Productos</h2>
+  <ul class="listado" id="listaProductos">
     {{#each products}}
       <li>
         {{this.titulo}}
