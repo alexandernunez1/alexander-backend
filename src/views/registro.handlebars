@@ -1,0 +1,88 @@
+<div
+  style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; color: #7A288A; border: 1px solid #7A288A;"
+>
+  <!-- Encabezado con icono -->
+  <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+    <h2 style="color: #7A288A; font-weight: bold;">Registro</h2>
+  </div>
+
+  <!-- Formulario -->
+  <form
+    id="registerForm"
+    style="background-color: #fff; padding: 1rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; color: #7A288A; border: 1px solid #7A288A;"
+  >
+    <div style="margin-bottom: 1rem;">
+      <label
+        for="username"
+        style="display: block; margin-bottom: 0.5rem; color: #7A288A;"
+      >Nombre de Usuario</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        style="width: 100%; padding: 0.5rem; border: 1px solid #7A288A; border-radius: 0.25rem;"
+        required
+      />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label
+        for="email"
+        style="display: block; margin-bottom: 0.5rem; color: #7A288A;"
+      >Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        style="width: 100%; padding: 0.5rem; border: 1px solid #7A288A; border-radius: 0.25rem;"
+        required
+      />
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label
+        for="lastName"
+        style="display: block; margin-bottom: 0.5rem; color: #7A288A;"
+      >Apellido</label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        style="width: 100%; padding: 0.5rem; border: 1px solid #7A288A; border-radius: 0.25rem;"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      style="background-color: #7A288A; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; width: 100%;"
+    >Registrarse</button>
+  </form>
+</div>
+
+<script>
+  const registerForm = document.getElementById("registerForm");
+  registerForm.addEventListener("submit", async(event)=>{
+    event.preventDefault();
+    try {
+      const name = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const lastName = document.getElementById("lastName").value;
+      if (!name || !email || !lastName) {
+        throw new Error("Faltan datos");
+      }
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({name, email, lastName})
+      });
+      const data = await response.json();
+      if (response.ok) {
+        localStorage.setItem("userId", data.payload._id);
+        window.location.href = "/";
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      alert(`Error al registrar el usuario: ${error.message}`);
+    }
+  });
+</script>

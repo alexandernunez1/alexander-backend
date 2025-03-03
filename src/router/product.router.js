@@ -72,6 +72,21 @@ productsRouter.delete("/:pid", async (req, res) => {
     await productManager.deleteProductById(pid); // Elimina el producto
     res.status(204).send(); // Responde con un estado 204 No Content
   } catch (error) {
+    console.error("Error al eliminar el producto:", error);
+    res
+      .status(500)
+      .json({ error: "Error al eliminar el producto", message: error.message });
+  }
+});
+
+// Agregamos un evento para eliminar un producto con el botón
+productsRouter.delete("/eliminar/:pid", async (req, res) => {
+  const { pid } = req.params;
+  try {
+    await productManager.deleteProductById(pid); // Elimina el producto
+    res.status(204).send(); // Responde con un estado 204 No Content
+  } catch (error) {
+    console.error("Error al eliminar el producto:", error);
     res
       .status(500)
       .json({ error: "Error al eliminar el producto", message: error.message });

@@ -6,8 +6,16 @@ import { Server } from "socket.io";
 import http from "http";
 import viewsRouter from "./src/router/views.router.js";
 import ProductManager from "./ProductManager.js";
+import userRouter from "./src/router/user.router.js";
+import dotenv from "dotenv";
+import connectMongoDB from "./src/db/db.js";
+import postRouter from "./src/router/post.router.js"; // Importación del router de posts
+
+dotenv.config();
 
 const app = express();
+connectMongoDB();
+
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -21,6 +29,8 @@ const PORT = 8080;
 app.use("/api/carts", cartsRouter);
 app.use("/api/products", productsRouter);
 app.use("/", viewsRouter);
+app.use("/api/users", userRouter);
+app.use("/api/post", postRouter); // Uso del router de posts
 
 const productManager = new ProductManager("./src/data/product.json");
 io.on("connection", (socket) => {

@@ -4,14 +4,23 @@
   <ul class="listado">
     {{#each products}}
       <li>
-        {{this.titulo}}
+        <a href="/products/{{this.id}}">{{this.titulo}}</a>
         -
         {{this.precio}}
         -
         {{this.descripcion}}
         -
         {{this.categoria}}
+        <button onclick="agregarAlCarrito('{{this.id}}')">Agregar al carrito</button>
       </li>
     {{/each}}
   </ul>
+  <div class="paginacion">
+    {{#if hasPreviousPage}}
+      <a href="/products?page={{currentPage - 1}}">Anterior</a>
+    {{/if}}
+    {{#if hasNextPage}}
+      <a href="/products?page={{nextPage}}">Siguiente</a> <!-- Cambiado aquí -->
+    {{/if}}
+  </div>
 </div>
